@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { loginUser } from "../action/authActions";
+import { hot } from 'react-hot-loader/root';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../action/authActions';
 
-function Login() {
+function Login({ history }) {
   const [info, setInfo] = useState({
     email: '',
     password: '',
@@ -11,6 +12,15 @@ function Login() {
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
+
+  const auth = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (auth.isAuth) {
+      history.push('/feed');
+    }
+  }, [auth.isAuth]);
+
   const loginNow = (e) => {
     e.preventDefault();
     dispatch(loginUser(info));
@@ -32,4 +42,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default hot(Login);

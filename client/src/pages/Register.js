@@ -1,23 +1,24 @@
-import React, { useState,useEffect } from "react";
-import { useDispatch,useSelector,} from "react-redux";
-import { registerUser } from "../action/authActions";
+import { hot } from 'react-hot-loader/root';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../action/authActions';
 
-function Register({history}) {
+function Register({ history }) {
   const [info, setInfo] = useState({
-    firstname: "",
-    lastname: "",
-    phone: "",
-    email: "",
-    password: "",
+    firstname: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    password: '',
   });
   const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector((state) => state.auth);
 
-//   useEffect(() => {
-//  if(auth.isAuth){
-//    history.push("/login")
-//  }
-//   }, [auth.isAuth])
+  useEffect(() => { 
+    if (auth.isRegister) {
+      history.push('/login');
+    }
+  }, [auth.isRegister]);
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
@@ -54,7 +55,4 @@ function Register({history}) {
   );
 }
 
-export default Register;
-
-
-
+export default hot(Register);

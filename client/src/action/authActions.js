@@ -1,4 +1,9 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL } from './types';
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+} from './types';
 import axios from 'axios';
 
 export const registerUser = (info) => (dispatch) => {
@@ -21,7 +26,7 @@ export const registerUser = (info) => (dispatch) => {
 
 export const loginUser = (info) => (dispatch) => {
   axios
-    .post('/login', info)
+    .post('http://localhost:5000/login', info)
     .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,

@@ -1,34 +1,42 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-} from "../action/types";
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+} from '../action/types';
 
 let initialState = {
-  token: localStorage.getItem("token"),
-  user: null,
+  isRegister: false,
   isAuth: false,
-  error: null,
 };
 
-const AuthReducer = (state = initialState, action) => {
+export const AuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
-        token: action.payload.token,
-        isAuth: true,
+        isRegister: true,
         errors: null,
       };
     case REGISTER_FAIL:
-      localStorage.removeItem("token");
       return {
         ...state,
+        errors: action.payload,
+      };
+    case LOGIN_SUCCESS:
+      localStorage.setItem('token', action.payload.token);
+      return {
+        ...state,
+        errors: null,
         isAuth: true,
+      };
+    case LOGIN_FAIL:
+      localStorage.removeItem('token');
+      return {
+        ...state,
         errors: action.payload,
       };
     default:
       return state;
   }
 };
-export default AuthReducer;

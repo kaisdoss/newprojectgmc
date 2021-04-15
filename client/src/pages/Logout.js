@@ -1,12 +1,12 @@
 import { hot } from 'react-hot-loader/root';
 import React from 'react';
 
-function Feed() {
+function Logout() {
   return (
     <div>
-      <h1>You're Inside :D</h1>
+      <h1>You're Logged Out!</h1>
     </div>
   );
 }
 
-export default hot(Feed);
+export default hot(Logout);

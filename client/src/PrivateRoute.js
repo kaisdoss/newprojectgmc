@@ -1,10 +1,10 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { hot } from 'react-hot-loader/root';
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function PrivateRoute({ component: Component, ...rest }) {
-    const auth = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
   return (
     <Route
       {...rest}
@@ -15,4 +15,4 @@ function PrivateRoute({ component: Component, ...rest }) {
   );
 }
 
-export default PrivateRoute;
+export default hot(PrivateRoute);
