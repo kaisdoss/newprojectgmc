@@ -41,8 +41,11 @@ router.post(
           .json({ errors: [{ msg: 'Please register before!' }] });
       }
       bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
-        if (!isMatch) {
-          return res.json({ errors: [{ msg: 'Wrong password!' }] });
+        if (err) {
+          throw err
+        }
+        else if (!isMatch) {
+          return res.status(401).json({ errors: [{ msg: 'Wrong password!' }] });
         } else {
           let payload = { userId: user._id };
           jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {

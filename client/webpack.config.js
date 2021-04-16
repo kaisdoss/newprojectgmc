@@ -1,6 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+// Method 1 : For using environment variables in our app but it's not the best because our API_URL is hardcoded-like
+const API_URL = 'http://localhost:5000'
+// Method 2 : This is the best method :D
+// const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   entry: ['react-hot-loader/patch', path.resolve(__dirname, 'src', 'index.js')],
@@ -30,5 +34,14 @@ module.exports = {
       inject: 'body',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    // new Dotenv({
+    //   path: './.env', // Path to .env file (this is the default)
+    //   safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
+    // }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        API_URL: JSON.stringify(API_URL)
+      }
+    })
   ],
 };

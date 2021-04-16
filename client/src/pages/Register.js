@@ -14,7 +14,7 @@ function Register({ history }) {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (auth.isRegister) {
       history.push('/login');
     }

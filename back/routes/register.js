@@ -28,11 +28,11 @@ router.post(
       }
       let newUser = new User(req.body);
       bcrypt.genSalt(10, (err, salt) => {
-        if(err) {
+        if (err) {
           throw err
         }
         bcrypt.hash(req.body.password, salt, (err, hashedPwd) => {
-          if(err) {
+          if (err) {
             throw err
           }
           newUser.password = hashedPwd;
