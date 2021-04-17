@@ -13,7 +13,7 @@ function Feed() {
 
   return (
     <div>
-      <h1>You're Inside Feed Page :D</h1>
+      <h1>You're Inside Feed Page :)</h1>
       {auth.user && <p>Hello {auth.user.firstname}</p>}
     </div>
   );
