@@ -11,7 +11,7 @@ import axios from 'axios';
 import SetToken from "../SetToken";
 
 export const registerUser = (info) => (dispatch) => {
-  console.log(info);
+  console.log('info', info);
   axios
     .post(`${process.env.API_URL}/register`, info)
     .then((res) => {

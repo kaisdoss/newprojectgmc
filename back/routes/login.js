@@ -1,26 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const authorized = require('../helpers/authMiddleware');
 const user = require('../models/user');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+// M: Manager
+// A: Admin
+// S: Stock Manager
+// C: Cashier
+const rolesArray = ['M', 'A', 'S', 'C']
+
 //load connected user
-router.get('/', authorized, (req, res) => {
+router.get('/', (req, res) => {
+  console.log(req.user);
   user
-    .findById(req.userId)
-    .select('-passwoerd')
+    .findById(req.user.userId)
+    .select('-password')
     .then((user) => {
       if (!user) {
-        return res.status(404).json({ msg: 'user not found!' });
+        return res.status(404).json({ msg: 'User Not Found!' });
       }
       res.status(200).json(user);
     })
     .catch((err) => {
       console.error(err.message);
-      res.status(500).send({ msg: 'sever error' });
+      res.status(500).send({ msg: 'Server Error' });
     });
 });
 
@@ -47,7 +53,7 @@ router.post(
         else if (!isMatch) {
           return res.status(401).json({ errors: [{ msg: 'Wrong password!' }] });
         } else {
-          let payload = { userId: user._id };
+          let payload = { userId: user._id, role: user.role };
           jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
             if (err) {
               throw err;

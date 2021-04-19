@@ -37,13 +37,6 @@ router.post(
           }
           newUser.password = hashedPwd;
           newUser.save();
-          let payload = { userId: newUser._id };
-          jwt.sign(payload, process.env.SECRET_KEY, (err, token) => {
-            if (err) {
-              throw err;
-            }
-            res.send({ token });
-          });
         });
       });
     });
