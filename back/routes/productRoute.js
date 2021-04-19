@@ -4,8 +4,8 @@ const Product = require("../models/product");
 const authMiddleware = require("../helpers/authMiddleware");
 
 // Route Create New product
-// Path : http://localhost:3000/addProduct
-router.post("/", authMiddleware, (req, res) => {
+// Path : http://localhost:3000/products/addProduct
+router.post("/addProduct", authMiddleware, (req, res) => {
   const { name, number, etat, buyingPrice, price, description } = req.body;
   const ProductModel = new Product({
     name,
@@ -29,7 +29,7 @@ router.get("/allProduct", authMiddleware, (req, res) => {
 });
 
 //Route  Update  produit
-// Path : http://localhost:3000/products/updateProduit
+// Path : http://localhost:3000/products/updateProduct
 router.put("/updateProduct", authMiddleware, (req, res) => {
   const { _id, name, number, etat, buyingPrice, price, description } = req.body;
   Product.findByIdAndUpdate(
@@ -47,7 +47,7 @@ router.put("/updateProduct", authMiddleware, (req, res) => {
 });
 
 //Route Delete product
-// Path : http://localhost:3000/products/deleteproduit/:id
+// Path : http://localhost:3000/products/deleteproduct/:id
 router.delete("/deleteproduct/:id", authMiddleware, (req, res) => {
   Product.findByIdAndDelete(req.params.id)
     .then((product) => res.status(200).json(product))

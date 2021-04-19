@@ -8,8 +8,7 @@ const ProductSchema = mongoose.Schema({
     enum: ["en stock", "hors stock"],
     default: "en stock",
   },
-
-  buyingPrice: { type: Number },
+  buyingPrice: { type: Number, require: true },
   price: { type: Number, require: true },
   description: { type: String },
 });
