@@ -20,6 +20,8 @@ function NavBar() {
       {auth.isAuth ? (
         <>
           <Link to="/profile" >Profil</Link>
+          <Link to="/facture/addFacture" >GFacture</Link>
+          <Link to="/products/addProduct" >GProduct</Link>
           <Link to="" onClick={() => dispatch(logoutUser())} >Logout</Link>
         </>
       ) : (

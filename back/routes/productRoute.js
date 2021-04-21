@@ -53,3 +53,5 @@ router.delete("/deleteproduct/:id", authMiddleware, (req, res) => {
     .then((product) => res.status(200).json(product))
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
 });
+
+module.exports = router;

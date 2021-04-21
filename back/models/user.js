@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
   phone: { type: String },
   email: { type: String, require: true },
   password: { type: String, require: true },
-  date: {type: Date, default: Date.now()},
+  created_at: {type: Date, default: Date.now()},
   role: { type: String, default: "N/A" }
 });
 
@@ -17,4 +17,4 @@ const userSchema = mongoose.Schema({
 
 // : MASC
 
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model("User", userSchema);

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { AuthReducer } from './authReducer';
+import achatReducer from './facturesAndProductsReducer'
 // import { persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
 
@@ -9,7 +10,7 @@ import { AuthReducer } from './authReducer';
 // 	whitelist: ['auth']
 // }
 
-const rootReducer = combineReducers({ auth: AuthReducer });
+const rootReducer = combineReducers({ auth: AuthReducer,achat: achatReducer });
 
 // export default persistReducer(persistConfig, rootReducer)
 export default rootReducer
