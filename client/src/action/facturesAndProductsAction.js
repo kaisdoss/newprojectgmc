@@ -1,5 +1,4 @@
 import axios from "axios";
-import SetToken from "../SetToken";
 import {
   ADD_FACTURE_FAILED,
   ADD_FACTURE_SUCCESS,
@@ -22,7 +21,6 @@ import {
 //Actions of Facture
 // 1-Add Facture Action
 export const addFacture = (facture) => (dispatch) => {
-  SetToken();
   axios
     .post("/facture/addFacture", facture)
     .then((res) =>
@@ -40,7 +38,6 @@ export const addFacture = (facture) => (dispatch) => {
 };
 //2-Get Facture Action
 export const getFacture = () => (dispatch) => {
-  SetToken();
   axios
     .get("/facture/allFacture")
     .then((res) =>
@@ -58,7 +55,6 @@ export const getFacture = () => (dispatch) => {
 };
 //3-Update Facture Action
 export const updateFacture = (facture) => (dispatch) => {
-  SetToken();
   axios
     .put("/facture/updateFacture", facture)
     .then((res) =>
@@ -76,7 +72,6 @@ export const updateFacture = (facture) => (dispatch) => {
 };
 //4-Delete Facture Action
 export const deleteFacture = (id) => (dispatch) => {
-  SetToken();
   axios
     .delete(`/facture/deleteFacture/${id}`)
     .then((res) =>
@@ -96,7 +91,6 @@ export const deleteFacture = (id) => (dispatch) => {
 //Actions of Produit
 // 1-Add Produit Action
 export const addProduit = (produit) => (dispatch) => {
-  SetToken();
   axios
     .post("/products/addProduct", produit)
     .then((res) =>
@@ -114,7 +108,6 @@ export const addProduit = (produit) => (dispatch) => {
 };
 //2-Get Produit Action
 export const getProduit = () => (dispatch) => {
-  SetToken();
   axios
     .get("/products/allProduct")
     .then((res) =>
@@ -132,7 +125,6 @@ export const getProduit = () => (dispatch) => {
 };
 //3-Update Produit Action
 export const updateProduit = (produit) => (dispatch) => {
-  SetToken();
   axios
     .put("/products/updateProduct", produit)
     .then((res) =>
@@ -150,7 +142,6 @@ export const updateProduit = (produit) => (dispatch) => {
 };
 //4-Delete Produit Action
 export const deleteProduit = (id) => (dispatch) => {
-  SetToken();
   axios
     .delete(`/products/deleteproduct/${id}`)
     .then((res) =>
