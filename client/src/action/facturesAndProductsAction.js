@@ -22,7 +22,7 @@ import {
 // 1-Add Facture Action
 export const addFacture = (facture) => (dispatch) => {
   axios
-    .post("/facture/addFacture", facture)
+    .post(`${process.env.API_URL}/facture/addFacture`, facture)
     .then((res) =>
       dispatch({
         type: ADD_FACTURE_SUCCESS,
@@ -39,7 +39,7 @@ export const addFacture = (facture) => (dispatch) => {
 //2-Get Facture Action
 export const getFacture = () => (dispatch) => {
   axios
-    .get("/facture/allFacture")
+    .get(`${process.env.API_URL}/facture/allFacture`)
     .then((res) =>
       dispatch({
         type: GET_FACTURE_SUCCESS,
@@ -56,7 +56,7 @@ export const getFacture = () => (dispatch) => {
 //3-Update Facture Action
 export const updateFacture = (facture) => (dispatch) => {
   axios
-    .put("/facture/updateFacture", facture)
+    .put(`${process.env.API_URL}/facture/updateFacture`, facture)
     .then((res) =>
       dispatch({
         type: UPDATE_FACTURE_SUCCESS,
@@ -73,7 +73,7 @@ export const updateFacture = (facture) => (dispatch) => {
 //4-Delete Facture Action
 export const deleteFacture = (id) => (dispatch) => {
   axios
-    .delete(`/facture/deleteFacture/${id}`)
+    .delete(`${process.env.API_URL}/facture/deleteFacture/${id}`)
     .then((res) =>
       dispatch({
         type: DELETE_FACTURE_SUCCESS,
@@ -92,7 +92,7 @@ export const deleteFacture = (id) => (dispatch) => {
 // 1-Add Produit Action
 export const addProduit = (produit) => (dispatch) => {
   axios
-    .post("/products/addProduct", produit)
+    .post(`${process.env.API_URL}/products/addProduct`, produit)
     .then((res) =>
       dispatch({
         type: ADD_PRODUIT_SUCCESS,
@@ -109,7 +109,7 @@ export const addProduit = (produit) => (dispatch) => {
 //2-Get Produit Action
 export const getProduit = () => (dispatch) => {
   axios
-    .get("/products/allProduct")
+    .get(`${process.env.API_URL}/products/allProduct`)
     .then((res) =>
       dispatch({
         type: GET_PRODUIT_SUCCESS,
@@ -126,7 +126,7 @@ export const getProduit = () => (dispatch) => {
 //3-Update Produit Action
 export const updateProduit = (produit) => (dispatch) => {
   axios
-    .put("/products/updateProduct", produit)
+    .put(`${process.env.API_URL}/products/updateProduct`, produit)
     .then((res) =>
       dispatch({
         type: UPDATE_PRODUIT_SUCCESS,
@@ -143,7 +143,7 @@ export const updateProduit = (produit) => (dispatch) => {
 //4-Delete Produit Action
 export const deleteProduit = (id) => (dispatch) => {
   axios
-    .delete(`/products/deleteproduct/${id}`)
+    .delete(`${process.env.API_URL}/products/deleteproduct/${id}`)
     .then((res) =>
       dispatch({
         type: DELETE_PRODUIT_SUCCESS,
