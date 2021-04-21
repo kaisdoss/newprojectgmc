@@ -8,6 +8,8 @@ import Register from './pages/Register';
 import Feed from './pages/Feed';
 import NavBar from './NavBar';
 import PrivateRoute from './PrivateRoute';
+import GFacture from './pages/GFacture';
+import GProduct from './pages/GProduct';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="facture/addFacture" component={GFacture} />
+          <Route exact path="/products/addProduct" component={GProduct} />
           <PrivateRoute path="/feed" component={Feed} />
         </Switch>
       </Router>
