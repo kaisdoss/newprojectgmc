@@ -45,10 +45,10 @@ export const loginUser = (info) => (dispatch) => {
     );
 };
 
-export const loadUser = (id) => (dispatch) => {
+export const loadUser = () => (dispatch) => {
   SetToken()
   axios
-    .get(`${process.env.API_URL}/user/loadpersonnel/${id}`)
+    .get(`${process.env.API_URL}/login`)
     .then((res) =>
       dispatch({
         type: LOAD_USER_SUCCESS,
