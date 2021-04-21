@@ -10,7 +10,7 @@ import achatReducer from './facturesAndProductsReducer'
 // 	whitelist: ['auth']
 // }
 
-const rootReducer = combineReducers({ auth: AuthReducer,achat: achatReducer });
+const rootReducer = combineReducers({ auth: AuthReducer,facturesAndProducts: achatReducer });
 
 // export default persistReducer(persistConfig, rootReducer)
 export default rootReducer
