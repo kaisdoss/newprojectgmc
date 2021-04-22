@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduit } from "../action/facturesAndProductsAction";
+import { addProduit } from "../../action/facturesAndProductsAction";
 
-function GProduct() {
+function AddProduct({history}) {
   const [produit, setProduit] = useState({
     number: "",
     name: "",
@@ -24,7 +24,8 @@ function GProduct() {
   };
   return (
     <div>
-      <h2>Gestion Produit</h2>
+      <h2>Add Product</h2>
+      <button onClick={() => history.goBack()} >Back</button>
 
       <form onSubmit={toAddProduit}>
         <div>
@@ -54,4 +55,4 @@ function GProduct() {
   );
 }
 
-export default GProduct;
+export default AddProduct;

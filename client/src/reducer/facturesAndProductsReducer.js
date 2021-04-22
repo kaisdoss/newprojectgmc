@@ -20,7 +20,7 @@ import {
 const initState = {
   facture: [],
   errors: null,
-  produit: null,
+  produit: [],
 };
 
 const achatReducer = (state = initState, action) => {
@@ -28,7 +28,7 @@ const achatReducer = (state = initState, action) => {
     case ADD_PRODUIT_SUCCESS:
       return {
         ...state,
-        produit: action.payload,
+        produit: [...state, ... action.payload],
         errors: null,
       };
     case GET_PRODUIT_SUCCESS:
