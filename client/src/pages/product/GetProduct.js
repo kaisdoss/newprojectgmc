@@ -1,30 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getProduit,
-  deleteProduit,
-  updateProduit,
+  getProduct,
+  deleteProduct,
+  updateProduct,
 } from "../../action/facturesAndProductsAction";
 import { Link } from "react-router-dom";
 
 function GetProduct({ history }) {
   const dispatch = useDispatch();
-  const produit = useSelector((state) => state.facturesAndProducts.produit);
+  const product = useSelector((state) => state.facturesAndProducts.product);
   useEffect(() => {
-    dispatch(getProduit());
+    dispatch(getProduct());
   }, []);
 
-  console.log(produit);
+//   console.log(product);
   return (
     <div>
       <button onClick={() => history.goBack()}>Back</button>
-      {produit &&
-        produit.map((produit) => {
+      {product &&
+        product.map((product) => {
           return (
-            <div key={produit._id}>
-              <span>{produit.name}</span>
-              <button to={`/updateproduct/${produit._id}`}>Update</button>
-              <button onClick={() => dispatch(deleteProduit(produit._id))}>
+            <div key={product._id}>
+              <span>{product.name}</span>
+              <button >
+                <Link to={`/products/updateProduct/${product._id}`} >Update</Link>
+              </button>
+              <button onClick={() => dispatch(deleteProduct(product._id))}>
                 Delete
               </button>
             </div>

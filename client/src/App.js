@@ -34,13 +34,13 @@ function App() {
           <Route exact path="/facture" render={({match, history})=>(<GFacture  match={match} history={history} />)} />
           <Route exact path="/facture/addFacture" render={({match, history})=>(<AddFacture  match={match} history={history} />)} />
           <Route exact path="/facture/allFacture" render={({match, history})=>(<GetFacture  match={match} history={history} />)} />
-          <Route exact path="/facture/updateFacture" render={({match, history})=>(<UpdateFacture  match={match} history={history} />)} />
+          <Route  path="/facture/updateFacture" render={({match, history})=>(<UpdateFacture  match={match} history={history} />)} />
           <Route exact path="/facture/deleteFacture" render={({match, history})=>(<DeleteFacture  match={match} history={history} />)} />
          
           <Route exact path="/products" render={({match, history})=>(<GProduct  match={match} history={history} />)} />
           <Route exact path="/products/addProduct"  render={({match, history})=>(<AddProduct  match={match} history={history} />)} />
           <Route exact path="/products/allProduct"  render={({match, history})=>(<GetProduct  match={match} history={history} />)} />
-          <Route exact path="/products/updateProduct" render={({match, history})=>(<UpdateProduct  match={match} history={history} />)} />
+          <Route path="/products/updateProduct" render={({match, history})=>(<UpdateProduct  match={match} history={history} />)} />
           <Route exact path="/products/deleteProduct" render={({match, history})=>(<DeleteProduct  match={match} history={history} />)} />
           
           <PrivateRoute path="/feed" component={Feed} />

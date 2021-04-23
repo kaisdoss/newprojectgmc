@@ -28,7 +28,7 @@ router.get("/allProduct", authMiddleware, (req, res) => {
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
 });
 
-//Route  Update  produit
+//Route  Update  product
 // Path : http://localhost:3000/products/updateProduct
 router.put("/updateProduct", authMiddleware, (req, res) => {
   const { _id, name, number, etat, buyingPrice, price, description } = req.body;

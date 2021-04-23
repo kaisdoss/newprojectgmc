@@ -1,52 +1,52 @@
 import {
   ADD_FACTURE_FAILED,
   ADD_FACTURE_SUCCESS,
-  ADD_PRODUIT_FAILED,
-  ADD_PRODUIT_SUCCESS,
+  ADD_PRODUCT_FAILED,
+  ADD_PRODUCT_SUCCESS,
   GET_FACTURE_FAILED,
   GET_FACTURE_SUCCESS,
-  GET_PRODUIT_FAILED,
-  GET_PRODUIT_SUCCESS,
+  GET_PRODUCT_FAILED,
+  GET_PRODUCT_SUCCESS,
   UPDATE_FACTURE_FAILED,
   UPDATE_FACTURE_SUCCESS,
-  UPDATE_PRODUIT_FAILED,
-  UPDATE_PRODUIT_SUCCESS,
+  UPDATE_PRODUCT_FAILED,
+  UPDATE_PRODUCT_SUCCESS,
   DELETE_FACTURE_FAILED,
   DELETE_FACTURE_SUCCESS,
-  DELETE_PRODUIT_FAILED,
-  DELETE_PRODUIT_SUCCESS,
+  DELETE_PRODUCT_FAILED,
+  DELETE_PRODUCT_SUCCESS,
 } from "../action/types";
 
 const initState = {
   facture: [],
   errors: null,
-  produit: [],
+  product: [],
 };
 
 const achatReducer = (state = initState, action) => {
   switch (action.type) {
-    case ADD_PRODUIT_SUCCESS:
+    case ADD_PRODUCT_SUCCESS:
       return {
         ...state,
-        produit: [...state, ... action.payload],
+        product: [...state.product,action.payload],
         errors: null,
       };
-    case GET_PRODUIT_SUCCESS:
-      return {
-        ...state,
-        errors: null,
-        produit: action.payload,
-      };
-    case DELETE_PRODUIT_SUCCESS:
-      return {
-        ...state,
-        produit: state.produit.filter((el) => el._id !== action.payload._id),
-      };
-    case UPDATE_PRODUIT_SUCCESS:
+    case GET_PRODUCT_SUCCESS:
       return {
         ...state,
         errors: null,
-        facture: state.produit.map((el) => {
+        product: action.payload,
+      };
+    case DELETE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        product: state.product.filter((el) => el._id !== action.payload._id),
+      };
+    case UPDATE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        errors: null,
+        facture: state.product.map((el) => {
           if (el._id === action.payload._id) return action.payload;
           return el;
         }),
@@ -78,10 +78,10 @@ const achatReducer = (state = initState, action) => {
         }),
       };
     case UPDATE_FACTURE_FAILED:
-    case GET_PRODUIT_FAILED:
-    case ADD_PRODUIT_FAILED:
-    case UPDATE_PRODUIT_FAILED:
-    case DELETE_PRODUIT_FAILED:
+    case GET_PRODUCT_FAILED:
+    case ADD_PRODUCT_FAILED:
+    case UPDATE_PRODUCT_FAILED:
+    case DELETE_PRODUCT_FAILED:
     case GET_FACTURE_FAILED:
     case ADD_FACTURE_FAILED:
     case DELETE_FACTURE_FAILED:

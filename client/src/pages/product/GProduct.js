@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function GProduct({history}) {
   return (
     <div>
-      <h2>Gestion de Produit</h2>
+      <h2>Gestion de Product</h2>
       <button>
         <Link to="/products/addProduct">Add Product</Link>
       </button>

@@ -2,20 +2,20 @@ import axios from "axios";
 import {
   ADD_FACTURE_FAILED,
   ADD_FACTURE_SUCCESS,
-  ADD_PRODUIT_FAILED,
-  ADD_PRODUIT_SUCCESS,
+  ADD_PRODUCT_FAILED,
+  ADD_PRODUCT_SUCCESS,
   GET_FACTURE_FAILED,
   GET_FACTURE_SUCCESS,
-  GET_PRODUIT_FAILED,
-  GET_PRODUIT_SUCCESS,
+  GET_PRODUCT_FAILED,
+  GET_PRODUCT_SUCCESS,
   UPDATE_FACTURE_FAILED,
   UPDATE_FACTURE_SUCCESS,
-  UPDATE_PRODUIT_FAILED,
-  UPDATE_PRODUIT_SUCCESS,
+  UPDATE_PRODUCT_FAILED,
+  UPDATE_PRODUCT_SUCCESS,
   DELETE_FACTURE_FAILED,
   DELETE_FACTURE_SUCCESS,
-  DELETE_PRODUIT_FAILED,
-  DELETE_PRODUIT_SUCCESS,
+  DELETE_PRODUCT_FAILED,
+  DELETE_PRODUCT_SUCCESS,
 } from "./types";
 
 //Actions of Facture
@@ -88,71 +88,73 @@ export const deleteFacture = (id) => (dispatch) => {
     );
 };
 
-//Actions of Produit
-// 1-Add Produit Action
-export const addProduit = (produit) => (dispatch) => {
+//Actions of Product
+// 1-Add Product Action
+export const addProduct = (product) => (dispatch) => {
   axios
-    .post(`${process.env.API_URL}/products/addProduct`, produit)
+    .post(`${process.env.API_URL}/products/addProduct`, product)
     .then((res) =>
       dispatch({
-        type: ADD_PRODUIT_SUCCESS,
+        type: ADD_PRODUCT_SUCCESS,
         payload: res.data,
       })
     )
     .catch((err) =>
       dispatch({
-        type: ADD_PRODUIT_FAILED,
+        type: ADD_PRODUCT_FAILED,
         payload: err.response.data.errors,
       })
     );
 };
-//2-Get Produit Action
-export const getProduit = () => (dispatch) => {
+//2-Get Product Action
+export const getProduct = () => (dispatch) => {
   axios
     .get(`${process.env.API_URL}/products/allProduct`)
     .then((res) =>
       dispatch({
-        type: GET_PRODUIT_SUCCESS,
+        type: GET_PRODUCT_SUCCESS,
         payload: res.data,
       })
     )
     .catch((err) =>
       dispatch({
-        type: GET_PRODUIT_FAILED,
+        type: GET_PRODUCT_FAILED,
         payload: err.response.data.errors,
       })
     );
 };
-//3-Update Produit Action
-export const updateProduit = (produit) => (dispatch) => {
+//3-Update Product Action
+export const updateProduct = (product) => (dispatch) => {
+  console.log("that is Product", product);
   axios
-    .put(`${process.env.API_URL}/products/updateProduct`, produit)
-    .then((res) =>
-      dispatch({
-        type: UPDATE_PRODUIT_SUCCESS,
+    .put(`${process.env.API_URL}/products/updateProduct`, product)
+    .then((res) => {
+      console.log("that is res:", res);
+      return dispatch({
+        type: UPDATE_PRODUCT_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+    })
     .catch((err) =>
       dispatch({
-        type: UPDATE_PRODUIT_FAILED,
+        type: UPDATE_PRODUCT_FAILED,
         payload: err.response.data.errors,
       })
     );
 };
-//4-Delete Produit Action
-export const deleteProduit = (id) => (dispatch) => {
+//4-Delete Product Action
+export const deleteProduct = (id) => (dispatch) => {
   axios
     .delete(`${process.env.API_URL}/products/deleteproduct/${id}`)
     .then((res) =>
       dispatch({
-        type: DELETE_PRODUIT_SUCCESS,
+        type: DELETE_PRODUCT_SUCCESS,
         payload: res.data,
       })
     )
     .catch((err) =>
       dispatch({
-        type: DELETE_PRODUIT_FAILED,
+        type: DELETE_PRODUCT_FAILED,
         payload: err.response.data.errors,
       })
     );

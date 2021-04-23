@@ -21,7 +21,7 @@ app.use("/products", require("./routes/productRoute"));
 app.use("/facture", require("./routes/factureRoute"));
 app.use("/user", require("./routes/userRoute"));
 
-app.use("/product", authorized, rolized, require("./routes/product"));
+// app.use("/product", authorized, rolized, require("./routes/product"));
 
 const PORT = process.env.PORT || 5000;
 
