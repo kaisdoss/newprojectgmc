@@ -1,36 +1,63 @@
-import { hot } from "react-hot-loader/root";
-import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logoutUser } from "./action/authActions";
+import { hot } from 'react-hot-loader/root';
+import './navbar.css'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from './action/authActions';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+} from 'reactstrap';
 
 function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
   const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   return (
     <div>
-      <Link to="/">Home</Link>
-      {/* {!auth.isAuth && <Link to="/register">Register</Link>}
-      {!auth.isAuth ? (
-        <Link to="/login">login</Link>
-      ) : (
-        <Link onClick={()=>dispatch(loadUser())} >Logout</Link>
-      )} */}
-
-      {auth.isAuth ? (
-        <>
-          <Link to="/profile" >Profil</Link>
-          <Link to="/facture" >GFacture</Link>
-          <Link to="/products" >GProduct</Link>
-          <Link to="" onClick={() => dispatch(logoutUser())} >Logout</Link>
-        </>
-      ) : (
-        <>
-          <Link to="/register">Register</Link>
-          <Link to="/login">login</Link>
-        </>
-      )}
-
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">Cash Register</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem className="link-navbar">
+              <Link to="/">Home</Link>
+            </NavItem>
+            {auth.isAuth ? (
+              <>
+                <NavItem className="link-navbar">
+                  <Link to="/profile">Profil</Link>
+                </NavItem>
+                <NavItem className="link-navbar">
+                  <Link to="/facture">Manage Invoice</Link>
+                </NavItem>
+                <NavItem className="link-navbar">
+                  <Link to="/products">Manage Product</Link>
+                </NavItem>
+                <NavItem className="link-navbar">
+                  <Link to="" onClick={() => dispatch(logoutUser())}>
+                    Logout
+                  </Link>
+                </NavItem>
+              </>
+            ) : (
+              <>
+                <NavItem className="link-navbar">
+                  <Link to="/register">Register</Link>
+                </NavItem>
+                <NavItem className="link-navbar">
+                  <Link to="/login">Login</Link>
+                </NavItem>
+              </>
+            )}
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   );
 }

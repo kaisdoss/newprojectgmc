@@ -124,12 +124,12 @@ export const getProduct = () => (dispatch) => {
     );
 };
 //3-Update Product Action
-export const updateProduct = (product) => (dispatch) => {
-  console.log("that is Product", product);
+export const updateProduct = (id, product) => (dispatch) => {
+  console.log("1 - Product In Action: ", product);
   axios
-    .put(`${process.env.API_URL}/products/updateProduct`, product)
+    .put(`${process.env.API_URL}/products/updateProduct/${id}`, product)
     .then((res) => {
-      console.log("that is res:", res);
+      console.log("This Is Result:", res);
       return dispatch({
         type: UPDATE_PRODUCT_SUCCESS,
         payload: res.data,

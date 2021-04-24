@@ -1,13 +1,13 @@
-import { hot } from "react-hot-loader/root";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProduct } from "../../action/facturesAndProductsAction";
-import { useLocation } from "react-router-dom";
+import { hot } from 'react-hot-loader/root';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateProduct } from '../../action/facturesAndProductsAction';
+import { useLocation } from 'react-router-dom';
 
 function UpdateProduct({ history }) {
   let location = useLocation();
 
-  let pathnamePortions = location.pathname.split("/");
+  let pathnamePortions = location.pathname.split('/');
   let productId = pathnamePortions[pathnamePortions.length - 1];
   const products = useSelector((state) => state.facturesAndProducts.product);
 
@@ -15,31 +15,44 @@ function UpdateProduct({ history }) {
     (thisProduct) => thisProduct._id === productId
   )[0];
 
-  const [name, setName] = useState(product?.name);
-  const [number, setNumber] = useState(product?.number);
-  const [buyingPrice, setBuyingPrice] = useState(product?.buyingPrice);
-  const [price, setPrice] = useState(product?.price);
-  const [description, setDescription] = useState(product?.description);
+  const [prod, setProd] = useState({
+    name: product?.name,
+    number: product?.number,
+    buyingPrice: product?.buyingPrice,
+    price: product?.price,
+    description: product?.description,
+  });
 
   const dispatch = useDispatch();
 
   const toUpdateProduct = (e) => {
     e.preventDefault();
     dispatch(
-      updateProduct(
-        productId,
-        product.name,
-        product.number,
-        product.buyingPrice,
-        product.price,
-        product.description
-      )
+      updateProduct(productId, {
+        name: prod.name,
+        number: prod.number,
+        buyingPrice: prod.buyingPrice,
+        price: prod.price,
+        description: prod.description,
+      })
     );
+    history.push('/products/allProduct');
+  };
+
+  const handleChange = (e) => {
+    if (
+      e.target.name === 'number' ||
+      e.target.name === 'buyingPrice' ||
+      e.target.name === 'price'
+    ) {
+      setProd({ ...prod, [e.target.name]: parseInt(e.target.value) });
+    } else {
+      setProd({ ...prod, [e.target.name]: e.target.value });
+    }
   };
   return (
     <div>
       <button onClick={() => history.goBack()}>Back</button>
-      <h2>hii</h2>
 
       <form onSubmit={toUpdateProduct}>
         <div>
@@ -47,8 +60,8 @@ function UpdateProduct({ history }) {
           <input
             type="text"
             name="number"
-            onChange={(e) => setNumber(e.target.value)}
-            value={number}
+            onChange={handleChange}
+            value={prod.number}
           />
         </div>
         <div>
@@ -56,8 +69,8 @@ function UpdateProduct({ history }) {
           <input
             type="text"
             name="name"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            onChange={handleChange}
+            value={prod.name}
           />
         </div>
         <div>
@@ -65,8 +78,8 @@ function UpdateProduct({ history }) {
           <input
             type="text"
             name="buyingPrice"
-            onChange={(e) => setBuyingPrice(e.target.value)}
-            value={buyingPrice}
+            onChange={handleChange}
+            value={prod.buyingPrice}
           />
         </div>
         <div>
@@ -74,8 +87,8 @@ function UpdateProduct({ history }) {
           <input
             type="text"
             name="price"
-            onChange={(e) => setPrice(e.target.value)}
-            value={price}
+            onChange={handleChange}
+            value={prod.price}
           />
         </div>
 
@@ -84,26 +97,11 @@ function UpdateProduct({ history }) {
           <input
             type="text"
             name="description"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
+            onChange={handleChange}
+            value={prod.description}
           />
         </div>
-        <button
-          onClick={() =>
-            dispatch(
-              updateProduct({
-                name,
-                number,
-                buyingPrice,
-                price,
-                description,
-              })
-            )
-          }
-          type="submit"
-        >
-          Save
-        </button>
+        <button type="submit">Save</button>
       </form>
     </div>
   );

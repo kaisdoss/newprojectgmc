@@ -1,0 +1,5 @@
+use('TestMyProject');
+
+// db.products.findByIdAndUpdate('6080d5b3a4e2130eecb23089', { name: "Milk", number: 50, price: 20, description: "Cow Milk" })
+
+db.products.findById(6080d5b3a4e2130eecb23089);

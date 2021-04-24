@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 // Method 1 : For using environment variables in our app but it's not the best because our API_URL is hardcoded-like
-const API_URL = 'http://localhost:5000'
+const API_URL = 'http://localhost:5000';
 // Method 2 : This is the best method :D
 // const Dotenv = require('dotenv-webpack')
 
@@ -13,7 +13,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.css$/, loader: 'css-loader' },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
     ],
   },
   devtool: 'eval-source-map',
@@ -26,7 +26,7 @@ module.exports = {
     historyApiFallback: true,
     port: 3000,
     hot: true,
-    open: true
+    open: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -40,8 +40,8 @@ module.exports = {
     // }),
     new webpack.DefinePlugin({
       'process.env': {
-        API_URL: JSON.stringify(API_URL)
-      }
-    })
+        API_URL: JSON.stringify(API_URL),
+      },
+    }),
   ],
 };

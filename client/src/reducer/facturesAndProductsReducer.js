@@ -46,7 +46,7 @@ const achatReducer = (state = initState, action) => {
       return {
         ...state,
         errors: null,
-        facture: state.product.map((el) => {
+        product: state.product.map((el) => {
           if (el._id === action.payload._id) return action.payload;
           return el;
         }),

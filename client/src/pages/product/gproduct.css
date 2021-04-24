@@ -1,0 +1,32 @@
+h2 {
+  text-align: center;
+}
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-buttons {
+  text-decoration: none;
+  padding: 8px;
+  border: 1px solid #000;
+  color: #000;
+  margin: 10px;
+  background-color: #fff;
+  text-shadow: 1px 1px 15px #fff;
+  box-shadow: 1px 1px 10px #fff;
+  border-radius: 2px;
+}
+
+.main-buttons:hover {
+  text-decoration: none;
+  padding: 8px;
+  border: 1px solid #000;
+  color: #fff;
+  margin: 10px;
+  background-color: #000;
+  transition: .5s;
+  text-shadow: 1px 1px 15px;
+  box-shadow: 1px 1px 10px #000;
+  border-radius: 2px;
+}
