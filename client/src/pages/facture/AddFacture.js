@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFacture } from "../action/facturesAndProductsAction";
+import { addFacture } from "../../action/facturesAndProductsAction";
 
-function GFacture() {
+function AddFacture({history}) {
   const [facture, setFacture] = useState({
     number: "",
     totalPrice: "",
@@ -25,6 +25,7 @@ function GFacture() {
     <div>
       <h2>Gestion Facture</h2>
 
+      <button onClick={() => history.goBack()}>Back</button>
       <form onSubmit={toAddFacture}>
         <div>
           <label>Number</label>
@@ -48,4 +49,4 @@ function GFacture() {
   );
 }
 
-export default GFacture;
+export default AddFacture;

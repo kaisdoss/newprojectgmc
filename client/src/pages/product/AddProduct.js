@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduit } from "../action/facturesAndProductsAction";
+import { addProduct } from "../../action/facturesAndProductsAction";
 
-function GProduct() {
-  const [produit, setProduit] = useState({
+function AddProduct({history}) {
+  const [product, setProduct] = useState({
     number: "",
     name: "",
     buyingPrice: "",
@@ -13,20 +13,22 @@ function GProduct() {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setProduit({ ...produit, [e.target.name]: e.target.value });
+    setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
   const auth = useSelector((state) => state.auth);
 
-  const toAddProduit = (e) => {
+  const toAddProduct = (e) => {
     e.preventDefault();
-    dispatch(addProduit(produit));
+    dispatch(addProduct(product));
+    setProduct()
   };
   return (
     <div>
-      <h2>Gestion Produit</h2>
+      <h2>Add Product</h2>
+      <button onClick={() => history.goBack()} >Back</button>
 
-      <form onSubmit={toAddProduit}>
+      <form onSubmit={toAddProduct}>
         <div>
           <label>number</label>
           <input type="text" name="number" onChange={handleChange} />
@@ -54,4 +56,4 @@ function GProduct() {
   );
 }
 
-export default GProduct;
+export default AddProduct;

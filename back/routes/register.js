@@ -8,7 +8,7 @@ require('dotenv').config();
 
 router.post(
   '/',
-  body("firstname", "Firstname must contain only alphabetic").isAlpha(),
+  body("firstname", "Firstname must contain only alphabetic").isAlpha('en-US', { ignore: " " }),
   body("lastname", "Lastname must contain only alphabetic").isAlpha(),
   body("phone", "Phone must contain only number").isNumeric(),
   body("email", "please enter a valid Email").isEmail(),
