@@ -1,6 +1,7 @@
 const express = require("express");
 const authMiddleware = require("../helpers/authMiddleware");
 const User = require("../models/user");
+const router = express.Router();
 
 router.get("/loadpersonnel/:id", authMiddleware, (req, res) => {
     const id = req.params._id;
@@ -10,3 +11,5 @@ router.get("/loadpersonnel/:id", authMiddleware, (req, res) => {
       })
       .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
   });
+
+  module.exports = router;
