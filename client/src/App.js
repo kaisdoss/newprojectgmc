@@ -1,26 +1,25 @@
-import { hot } from "react-hot-loader/root";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
-import NavBar from "./NavBar";
-import PrivateRoute from "./PrivateRoute";
-import GFacture from "./pages/facture/GFacture";
-import AddFacture from "./pages/facture/AddFacture";
-import GetFacture from "./pages/facture/GetFacture";
-import UpdateFacture from "./pages/facture/UpdateFacture";
-import DeleteFacture from "./pages/facture/DeleteFacture";
+import { hot } from 'react-hot-loader/root';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import NavBar from './NavBar';
+import PrivateRoute from './PrivateRoute';
+import GFacture from './pages/facture/GFacture';
+import AddFacture from './pages/facture/AddFacture';
+import GetFacture from './pages/facture/GetFacture';
+import UpdateFacture from './pages/facture/UpdateFacture';
+import DeleteFacture from './pages/facture/DeleteFacture';
 
-import GProduct from "./pages/product/GProduct";
-import AddProduct from "./pages/product/AddProduct";
-import GetProduct from "./pages/product/GetProduct";
-import UpdateProduct from "./pages/product/UpdateProduct";
-import DeleteProduct from "./pages/product/DeleteProduct";
-import GetUsers from "./pages/users/GetUsers";
+import GProduct from './pages/product/GProduct';
+import AddProduct from './pages/product/AddProduct';
+import GetProduct from './pages/product/GetProduct';
+import UpdateProduct from './pages/product/UpdateProduct';
+import DeleteProduct from './pages/product/DeleteProduct';
 
 function App() {
   return (
@@ -100,7 +99,6 @@ function App() {
               <DeleteProduct match={match} history={history} />
             )}
           />
-
           <PrivateRoute path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>

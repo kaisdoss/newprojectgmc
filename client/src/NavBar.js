@@ -1,9 +1,9 @@
-import { hot } from "react-hot-loader/root";
-import "./navbar.css";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logoutUser } from "./action/authActions";
+import { hot } from 'react-hot-loader/root';
+import './navbar.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from './action/authActions';
 import {
   Collapse,
   Navbar,
@@ -33,12 +33,12 @@ function NavBar() {
                 <NavItem className="link-navbar">
                   <Link to="/profile">Profil</Link>
                 </NavItem>
-                {auth?.user?.role !== "Stock Manager" && (
+                {auth?.user?.role !== 'Stock Manager' && (
                   <NavItem className="link-navbar">
                     <Link to="/facture">Manage Invoice</Link>
                   </NavItem>
                 )}
-                {auth?.user?.role !== "Cashier" && (
+                {auth?.user?.role !== 'Cashier' && (
                   <NavItem className="link-navbar">
                     <Link to="/products">Manage Product</Link>
                   </NavItem>
