@@ -38,10 +38,12 @@ export const AuthReducer = (state = initialState, action) => {
         errors: action.payload,
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
+      if (action.payload.token) {
+        localStorage.setItem("token", action.payload.token);
+      }
       return {
         ...state,
-        token: action.payload.token,
+        token: action.payload.token ? action.payload.token : null,
         errors: null,
         isAuth: true,
         isRegister: true,

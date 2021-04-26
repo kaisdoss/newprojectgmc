@@ -17,7 +17,7 @@ function Login({ history }) {
 
   useEffect(() => {
     if (auth.isAuth) {
-      history.push('/feed');
+      history.push('/dashboard');
     }
   }, [auth.isAuth]);
 

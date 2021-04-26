@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader/root';
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { registerUser } from '../action/authActions';
 
 function Register({ history }) {
@@ -10,15 +10,9 @@ function Register({ history }) {
     phone: '',
     email: '',
     password: '',
+    role: ''
   });
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (auth.isRegister) {
-      history.push('/login');
-    }
-  }, [auth.isRegister]);
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
@@ -37,6 +31,15 @@ function Register({ history }) {
       <div>
         <label>Last Name</label>
         <input type="text" name="lastname" onChange={handleChange} />
+      </div>
+      <div>
+        <label>Role</label>
+        <select name="role" onChange={handleChange} value={info.role}>
+          <option value="null">Select a role</option>
+          <option value="Manager">Manager</option>
+          <option value="Cashier">Cashier</option>
+          <option value="Stock Manager">Stock Manager</option>
+        </select>
       </div>
       <div>
         <label>Phone</label>

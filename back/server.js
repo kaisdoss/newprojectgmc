@@ -19,7 +19,7 @@ app.use("/login", login);
 app.use("/post", require("./routes/post"));
 app.use("/products", require("./routes/productRoute"));
 app.use("/facture", require("./routes/factureRoute"));
-app.use("/user", require("./routes/userRoute"));
+app.use("/users", require("./routes/userRoute"));
 
 // app.use("/product", authorized, rolized, require("./routes/product"));
 

@@ -4,6 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function PrivateRoute({ component: Component, ...rest }) {
+  console.log('location in private route', location);
   const auth = useSelector((state) => state.auth);
   return (
     <Route

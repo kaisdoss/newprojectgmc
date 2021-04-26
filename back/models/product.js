@@ -11,6 +11,12 @@ const ProductSchema = mongoose.Schema({
   buyingPrice: { type: Number, require: true },
   price: { type: Number, require: true },
   description: { type: String },
+  invoices: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Invoice"
+    }
+  ]
 });
 
 module.exports = mongoose.model("Product", ProductSchema);
