@@ -5,7 +5,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   LOAD_USER_SUCCESS,
-  LOAD_USER_FAIL
+  LOAD_USER_FAIL,
 } from './types';
 import axios from 'axios';
 import SetToken from "../SetToken";

@@ -9,15 +9,11 @@ function GFacture({history}) {
       <button>
         <Link to="/facture/addFacture">Add Facture</Link>
       </button>
-      <button>
-        <Link to="/facture/deleteFacture">Delete Facture</Link>
-      </button>
+
       <button>
         <Link to="/facture/allFacture">Get All Facture</Link>
       </button>
-      <button>
-        <Link to="/facture/updateFacture">Update Facture</Link>
-      </button>
+
     </div>
   );
 }

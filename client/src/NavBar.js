@@ -11,7 +11,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-} from 'reactstrap';
+} from "reactstrap";
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);

@@ -15,6 +15,7 @@ function Dashboard() {
   return (
     <div>
       <Link to="/register">Register</Link>
+      <Link to="/users/allUsers">Users</Link>
     </div>
   );
 }
