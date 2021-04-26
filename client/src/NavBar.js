@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader/root';
-import './navbar.css'
+import './navbar.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -33,12 +33,16 @@ function NavBar() {
                 <NavItem className="link-navbar">
                   <Link to="/profile">Profil</Link>
                 </NavItem>
-                <NavItem className="link-navbar">
-                  <Link to="/facture">Manage Invoice</Link>
-                </NavItem>
-                <NavItem className="link-navbar">
-                  <Link to="/products">Manage Product</Link>
-                </NavItem>
+                {auth?.user?.role !== 'Stock Manager' && (
+                  <NavItem className="link-navbar">
+                    <Link to="/facture">Manage Invoice</Link>
+                  </NavItem>
+                )}
+                {auth?.user?.role !== 'Cashier' && (
+                  <NavItem className="link-navbar">
+                    <Link to="/products">Manage Product</Link>
+                  </NavItem>
+                )}
                 <NavItem className="link-navbar">
                   <Link to="" onClick={() => dispatch(logoutUser())}>
                     Logout
@@ -47,9 +51,6 @@ function NavBar() {
               </>
             ) : (
               <>
-                <NavItem className="link-navbar">
-                  <Link to="/register">Register</Link>
-                </NavItem>
                 <NavItem className="link-navbar">
                   <Link to="/login">Login</Link>
                 </NavItem>
