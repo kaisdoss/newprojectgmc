@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 //load connected user
+
 router.get('/', authorized, (req, res) => {
   user
     .findById(req.userId)
@@ -46,7 +47,7 @@ router.post(
         req.body.email === process.env.ADMIN_TWO
       ) {
         if (req.body.password === user.password) {
-          res.send({ msg: 'Welcome Admin!' });
+          return res.send({ msg: 'Welcome Admin!', role: user.role });
         }
       }
       bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
