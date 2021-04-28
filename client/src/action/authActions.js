@@ -8,7 +8,7 @@ import {
   LOAD_USER_FAIL,
 } from './types';
 import axios from 'axios';
-import SetToken from "../SetToken";
+import SetToken from '../SetToken';
 
 export const registerUser = (info) => (dispatch) => {
   console.log('info', info);
@@ -31,12 +31,12 @@ export const registerUser = (info) => (dispatch) => {
 export const loginUser = (info) => (dispatch) => {
   axios
     .post(`${process.env.API_URL}/login`, info)
-    .then((res) => {
+    .then((res) =>
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
-      });
-    })
+      })
+    )
     .catch((err) =>
       dispatch({
         type: LOGIN_FAIL,
@@ -45,8 +45,10 @@ export const loginUser = (info) => (dispatch) => {
     );
 };
 
-export const loadUser = () => (dispatch) => {
-  SetToken()
+export const loadUser = (auth) => (dispatch) => {
+  if (auth.token) {
+    SetToken();
+  }
   axios
     .get(`${process.env.API_URL}/login`)
     .then((res) =>
@@ -63,8 +65,8 @@ export const loadUser = () => (dispatch) => {
     );
 };
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => (dispatch) => {
   dispatch({
-    type: LOGOUT
-  })
-}
+    type: LOGOUT,
+  });
+};

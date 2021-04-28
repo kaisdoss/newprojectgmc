@@ -3,7 +3,7 @@ const authMiddleware = require("../helpers/authMiddleware");
 const User = require("../models/user");
 const router = express.Router();
 
-router.get("/loadpersonnel/:id", authMiddleware, (req, res) => {
+router.get("/loadpersonnel/:id", (req, res) => {
     const id = req.params._id;
     User.findById(id)
       .then((pers) => {
@@ -14,7 +14,7 @@ router.get("/loadpersonnel/:id", authMiddleware, (req, res) => {
 
   // Route Read All users
 // Path : http://localhost:3000/users/allUsers
-router.get('/allUsers', authMiddleware, (req, res) => {
+router.get('/allUsers', (req, res) => {
   User.find()
     .then((user) => res.status(200).json(user))
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
@@ -22,7 +22,7 @@ router.get('/allUsers', authMiddleware, (req, res) => {
 
 //Route  Update  user
 // Path : http://localhost:3000/users/updateUser
-router.put('/updateUser/:id', authMiddleware, (req, res) => {
+router.put('/updateUser/:id',  (req, res) => {
   const { id } = req.params;
   const { firstname, lastname, phone, email, password, role } = req.body;
   User.findByIdAndUpdate(
@@ -43,7 +43,7 @@ router.put('/updateUser/:id', authMiddleware, (req, res) => {
 
 //Route Delete user
 // Path : http://localhost:3000/users/deleteUser/:id
-router.delete('/deleteUser/:id', authMiddleware, (req, res) => {
+router.delete('/deleteUser/:id', (req, res) => {
   User.findByIdAndDelete(req.params.id)
     .then((user) => res.status(200).json(user))
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));

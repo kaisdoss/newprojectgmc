@@ -9,12 +9,15 @@ function Dashboard() {
   const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(loadUser());
+    if (auth?.user?.role !== 'Admin') {
+      dispatch(loadUser(auth));
+    }
   }, []);
 
   return (
     <div>
       <Link to="/register">Register</Link>
+      <br />
       <Link to="/users/allUsers">Users</Link>
     </div>
   );

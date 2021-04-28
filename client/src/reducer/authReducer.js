@@ -47,6 +47,7 @@ export const AuthReducer = (state = initialState, action) => {
         errors: null,
         isAuth: true,
         isRegister: true,
+        user: action.payload.token ? null : { role: action.payload.role},
       };
     case LOGOUT:
       localStorage.removeItem("token");
