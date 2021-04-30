@@ -1,0 +1,22 @@
+.LoginContainer{
+
+}
+.LoginForm{
+    margin-top: 35px;
+    display: grid;
+    justify-content: space-around;
+}
+.LoginButton{
+    height: 40px;
+    /* padding: auto; */
+    margin-top: 50px;
+}
+.MuiButton-containedPrimary {
+    
+    color: #fff;
+    background-color: #3f51b5;
+    margin-block: auto;
+}
+#InputLogin{
+    width: 300px;
+}

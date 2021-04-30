@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { hot } from 'react-hot-loader/root';
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProduct,
@@ -7,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 
 function GetProduct({ history }) {
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.facturesAndProducts.product);
   useEffect(() => {
@@ -22,9 +24,10 @@ function GetProduct({ history }) {
           return (
             <div key={product._id}>
               <span>{product.name}</span>
+              {auth?.user?.role !== 'Stock Manager' && (
               <button >
                 <Link to={`/products/updateProduct/${product._id}`} >Update</Link>
-              </button>
+              </button> )}
               <button onClick={() => dispatch(deleteProduct(product._id))}>
                 Delete
               </button>
@@ -35,4 +38,4 @@ function GetProduct({ history }) {
   );
 }
 
-export default GetProduct;
+export default hot(GetProduct);

@@ -4,7 +4,7 @@ import { getFacture, deleteFacture } from "../../action/facturesAndProductsActio
 import { Link } from "react-router-dom";
 
 function GetFacture({history}) {
-    const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
     const facture = useSelector((state) => state.facturesAndProducts.facture);
     useEffect(() => {
       dispatch(getFacture());
@@ -17,9 +17,12 @@ function GetFacture({history}) {
           return (
             <div key={facture._id}>
               <span>{facture.totalPrice}</span>
+
+              {auth?.user?.role !== 'Cashier' && (
               <button >
                 <Link to={`/facture/updateFacture/${facture._id}`} >Update</Link>
-              </button>
+              </button> )}
+
               <button onClick={() => dispatch(deleteFacture(facture._id))}>
                 Delete
               </button>

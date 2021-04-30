@@ -12,15 +12,18 @@ function NavBar() {
   const dispatch = useDispatch();
   return (
     <div>
-      <Link to="/">Home</Link>
+     
       {auth.isAuth ? (
         <>
           <Link to="/profile">Profil</Link>
-          {auth?.user?.role !== 'Stock Manager' && (
+          {/* {auth?.user?.role !== 'Stock Manager' && ( */}
             <Link to="/facture">Manage Invoice</Link>
-          )}
-          {auth?.user?.role !== 'Cashier' && (
+          {/* )} */}
+          {/* {auth?.user?.role !== 'Cashier' && ( */}
             <Link to="/products">Manage Product</Link>
+          {/* )} */}
+          {auth?.user?.role !== ('Cashier'||'Stock Manager' ) && (
+            <Link to="/dashboard">Dashboard</Link>
           )}
           <Link to="" onClick={() => dispatch(logoutUser())}>
             Logout

@@ -1,16 +1,30 @@
-import { hot } from 'react-hot-loader/root';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../action/authActions';
+import "./cssFile/Register.css";
+import { hot } from "react-hot-loader/root";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../action/authActions";
+import { makeStyles } from "@material-ui/core/styles";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+}));
 
 function Register({ history }) {
+  const classes = useStyles();
   const [info, setInfo] = useState({
-    firstname: '',
-    lastname: '',
-    phone: '',
-    email: '',
-    password: '',
-    role: ''
+    firstname: "",
+    lastname: "",
+    phone: "",
+    email: "",
+    password: "",
+    role: "",
   });
   const dispatch = useDispatch();
 
@@ -24,13 +38,54 @@ function Register({ history }) {
   };
   return (
     <form onSubmit={registerNow}>
-      <div>
-        <label>First Name</label>
-        <input type="text" name="firstname" onChange={handleChange} />
-      </div>
-      <div>
-        <label>Last Name</label>
-        <input type="text" name="lastname" onChange={handleChange} />
+      <div className={classes.root}>
+        <Grid direction="column" container spacing={3}>
+          <Grid item>
+            <Paper className={classes.paper}>
+              <input
+                placeholder="Enter Your First Name"
+                type="text"
+                name="firstname"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
+          <Grid item>
+            <Paper className={classes.paper}>
+              <input
+                placeholder="Enter Your Last Name"
+                type="text"
+                name="lastname"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
+          <Grid item>
+            <Paper className={classes.paper}>
+              <input
+                placeholder="Enter Your Phone"
+                type="text"
+                name="phone"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
+          <Grid item>
+            <Paper className={classes.paper}>
+              <input
+                placeholder="Enter Your Email"
+                type="text"
+                name="email"
+                onChange={handleChange}
+              />
+            </Paper>
+          </Grid>
+          <Grid item>
+            <Paper className={classes.paper} placeholder="Enter Your Password">
+              <input placeholder="Enter Your Password" type="password" name="password" onChange={handleChange} />
+            </Paper>
+          </Grid>
+        </Grid>
       </div>
       <div>
         <label>Role</label>
@@ -41,19 +96,10 @@ function Register({ history }) {
           <option value="Stock Manager">Stock Manager</option>
         </select>
       </div>
-      <div>
-        <label>Phone</label>
-        <input type="text" name="phone" onChange={handleChange} />
-      </div>
-      <div>
-        <label>Email</label>
-        <input type="text" name="email" onChange={handleChange} />
-      </div>
-      <div>
-        <label>Password</label>
-        <input type="password" name="password" onChange={handleChange} />
-      </div>
-      <button type="submit">Register</button>
+
+      <button className="RegisterForm" type="submit">
+        Register
+      </button>
     </form>
   );
 }

@@ -5,7 +5,7 @@ const authMiddleware = require("../helpers/authMiddleware");
 
 // Route Create New facture
 // Path : http://localhost:3000/facture/addFacture
-router.post("/addFacture", authMiddleware, (req, res) => {
+router.post("/addFacture", (req, res) => {
   const { idProduct, number, totalPrice, discount, vat } = req.body;
   const factureModel = new Invoice({
     idProduct,
@@ -22,7 +22,7 @@ router.post("/addFacture", authMiddleware, (req, res) => {
 
 // Route Read All facture
 // Path : http://localhost:3000/facture/allFacture
-router.get("/allFacture", authMiddleware, (req, res) => {
+router.get("/allFacture",  (req, res) => {
   Invoice.find()
     .then((factures) => res.status(200).json(factures))
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
@@ -30,7 +30,7 @@ router.get("/allFacture", authMiddleware, (req, res) => {
 
 //Route Delete facture
 // Path : http://localhost:3000/facture/deleteFacture/:id
-router.delete("/deleteFacture/:id", authMiddleware, (req, res) => {
+router.delete("/deleteFacture/:id", (req, res) => {
   Invoice.findByIdAndDelete(req.params.id)
     .then((facture) => res.json(facture))
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
@@ -38,7 +38,7 @@ router.delete("/deleteFacture/:id", authMiddleware, (req, res) => {
 
 //Route  Update  facture
 // Path : http://localhost:3000/facture/updateFacture
-router.put("/updateFacture", authMiddleware, (req, res) => {
+router.put("/updateFacture", (req, res) => {
   const { id, idProduct, number, totalPrice, discount, vat } = req.body;
   Invoice.findByIdAndUpdate(
     id,

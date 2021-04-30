@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers, deleteUsers } from "../../action/userActions";
@@ -32,4 +33,4 @@ function GetUsers({ history }) {
   );
 }
 
-export default GetUsers;
+export default hot(GetUsers);

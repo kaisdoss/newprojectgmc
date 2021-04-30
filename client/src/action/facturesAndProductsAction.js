@@ -110,7 +110,7 @@ export const addProduct = (product) => (dispatch) => {
 //2-Get Product Action
 export const getProduct = () => (dispatch) => {
   axios
-    .get(`${process.env.API_URL}/products/allProduct`)
+    .get(`${process.env.API_URL}/products/salePage`)
     .then((res) =>
       dispatch({
         type: GET_PRODUCT_SUCCESS,
