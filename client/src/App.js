@@ -33,7 +33,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Profile from './pages/Profile';
-import SalesPage from './pages/cashier/salesPage';
+import SalesPage from './pages/cashier/SalesPage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
