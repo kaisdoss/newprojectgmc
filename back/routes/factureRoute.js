@@ -5,17 +5,17 @@ const Product = require('../models/product');
 const User = require('../models/user');
 const authMiddleware = require('../helpers/authMiddleware');
 
-
 // Route Create New facture
 // Path : http://localhost:3000/facture/addFacture
 router.post('/addFacture', (req, res) => {
-  const { idProducts, number, totalPrice, discount, vat } = req.body;
+  const { idProducts, number, totalPrice, discount, vat,idUsers } = req.body;
   const factureModel = new Invoice({
     idProducts,
     number,
     totalPrice,
     discount,
     vat,
+    idUsers
   });
   factureModel
     .save()
@@ -38,39 +38,33 @@ router.get('/getFacture/:id', (req, res) => {
   const { id } = req.params.id;
   Db.Invoice.findById(id)
     .then((factures) => {
-      Db.Product.find({ _id: { $in: factures.idProducts } }).then((Products) => {
-        const Result = new Object( {
-          number: factures.number,
-          totalPrice: factures.totalPrice,
-          discount: factures.discount,
-          vat: factures.vat,
-          date: factures.date,
-          Products: Products,
-        });
-        res.status(200).json(Result);
-      });
-  
+      Db.Product.find({ _id: { $in: factures.idProducts } }).then(
+        (Products) => {
+          const Result = new Object({
+            number: factures.number,
+            totalPrice: factures.totalPrice,
+            discount: factures.discount,
+            vat: factures.vat,
+            date: factures.date,
+            Products: Products,
+          });
+          res.status(200).json(Result);
+        }
+      );
     })
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
 });
 
-router.get('/getFactureV2/:id', (req, res) => {
- try {
+router.get('/getFactureV2/:id', async (req, res) => {
+  try {
     const { id } = req.params.id;
-    var InvoiceList = Invoice.findById( req.params.id)
-    // res.status(200).json(InvoiceList);
-  
-    res.status(200).json(InvoiceList);
-       const Result = new Object({
-        number: InvoiceList.number,
-        totalPrice: InvoiceList.totalPrice,
-        discount: InvoiceList.discount,
-        vat: InvoiceList.vat,
-        date: InvoiceList.date
-      }) ;
-    res.send({ Invoice:Result });
-    const ProductList = Product.find({ _id: { $in: factures.idProducts } });
-    const UserList = User.find({ _id: { $in: facture.idUsers } });
+    var InvoiceList = await Invoice.findById(req.params.id).exec();
+    const ProductList = await Product.find({
+      _id: { $in: InvoiceList.idProducts },
+    }).exec();
+    console.log(ProductList);
+    const UserList = await User.findOne({ _id: InvoiceList.idUsers }).exec();
+    console.log(UserList);
     const Result = {
       number: InvoiceList.number,
       totalPrice: InvoiceList.totalPrice,
@@ -78,10 +72,10 @@ router.get('/getFactureV2/:id', (req, res) => {
       vat: InvoiceList.vat,
       date: InvoiceList.date,
       Products: ProductList,
-      Users: UserList,
+      User: UserList,
     };
-
-   res.status(200).json(InvoiceList);
+    res.status(200).json(Result);
+    // res.status(200).json(InvoiceList);
   } catch (error) {
     res.status(400).json({ errors: [{ msg: error }] });
   }

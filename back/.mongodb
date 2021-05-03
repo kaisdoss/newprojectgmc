@@ -1,5 +1,7 @@
 use('TestMyProject');
 
-// db.products.findByIdAndUpdate('6080d5b3a4e2130eecb23089', { name: "Milk", number: 50, price: 20, description: "Cow Milk" })
+// db.invoices.findOne({ _id: ObjectId('6084454ea05a4f359450fc26') })
 
-db.products.findById(6080d5b3a4e2130eecb23089);
+// prodinfact = db.products.findOne({ _id: ObjectId('6082263654ce6f25f4ec1ce4') });
+
+db.invoices.find({ _id: { $in: ['6082263654ce6f25f4ec1ce4'] } });
