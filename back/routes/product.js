@@ -35,4 +35,8 @@ router.get("/myposot", authMiddleware, (req, res) => {
     });
 });
 
+// Route Read All facture
+// Path : http://localhost:3000/facture/allFacture
+
+
 module.exports = router;

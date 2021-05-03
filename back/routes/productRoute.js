@@ -55,5 +55,9 @@ router.delete('/deleteproduct/:id', (req, res) => {
     .then((product) => res.status(200).json(product))
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
 });
-
+router.get('/GetProduct/:id', (req, res) => {
+  Product.findById(req.params.id)
+    .then((product) => res.status(200).json(product))
+    .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
+});
 module.exports = router;

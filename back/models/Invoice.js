@@ -6,11 +6,11 @@ const InvoiceSchema = mongoose.Schema({
   discount: { type: Number, require: true },
   vat: { type: Number, require: true },
   date: {type: Date, default: Date.now()},
-  user: {
+  idUsers: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
-  products: [
+  idProducts: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product"

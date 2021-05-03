@@ -4,6 +4,7 @@ import { getFacture, deleteFacture } from "../../action/facturesAndProductsActio
 import { Link } from "react-router-dom";
 
 function GetFacture({history}) {
+  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
     const facture = useSelector((state) => state.facturesAndProducts.facture);
     useEffect(() => {
