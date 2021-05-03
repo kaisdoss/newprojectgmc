@@ -1,10 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 import {
-
   ADD_PRODUCT_FAILED,
   ADD_PRODUCT_SUCCESS,
   GET_PRODUCT_FAILED,
-  GET_PRODUCT_SUCCESS, 
+  GET_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_FAILED,
   UPDATE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILED,
@@ -17,7 +16,9 @@ import {
   UPDATE_FACTURE_SUCCESS,
   DELETE_FACTURE_FAILED,
   DELETE_FACTURE_SUCCESS,
-} from "./types";
+  GET_FACTURE_BY_ID_SUCCESS,
+  GET_FACTURE_BY_ID_FAILED,
+} from './types';
 
 //Actions of Facture
 // 1-Add Facture Action
@@ -50,6 +51,23 @@ export const getFacture = () => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: GET_FACTURE_FAILED,
+        payload: err.response.data.errors,
+      })
+    );
+};
+////////////
+export const getFactureById = (id) => (dispatch) => {
+  axios
+    .get(`${process.env.API_URL}/facture/getFactureV2/${id}`)
+    .then((res) =>
+      dispatch({
+        type: GET_FACTURE_BY_ID_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_FACTURE_BY_ID_FAILED,
         payload: err.response.data.errors,
       })
     );
@@ -126,11 +144,11 @@ export const getProduct = () => (dispatch) => {
 };
 //3-Update Product Action
 export const updateProduct = (id, product) => (dispatch) => {
-  console.log("1 - Product In Action: ", product);
+  console.log('1 - Product In Action: ', product);
   axios
     .put(`${process.env.API_URL}/products/updateProduct/${id}`, product)
     .then((res) => {
-      console.log("This Is Result:", res);
+      console.log('This Is Result:', res);
       return dispatch({
         type: UPDATE_PRODUCT_SUCCESS,
         payload: res.data,

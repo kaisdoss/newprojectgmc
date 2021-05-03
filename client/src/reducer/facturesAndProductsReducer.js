@@ -5,6 +5,8 @@ import {
   ADD_PRODUCT_SUCCESS,
   GET_FACTURE_FAILED,
   GET_FACTURE_SUCCESS,
+  GET_FACTURE_BY_ID_FAILED,
+  GET_FACTURE_BY_ID_SUCCESS,
   GET_PRODUCT_FAILED,
   GET_PRODUCT_SUCCESS,
   UPDATE_FACTURE_FAILED,
@@ -15,7 +17,7 @@ import {
   DELETE_FACTURE_SUCCESS,
   DELETE_PRODUCT_FAILED,
   DELETE_PRODUCT_SUCCESS,
-} from "../action/types";
+} from '../action/types';
 
 const initState = {
   facture: [],
@@ -28,7 +30,7 @@ const achatReducer = (state = initState, action) => {
     case ADD_PRODUCT_SUCCESS:
       return {
         ...state,
-        product: [...state.product,action.payload],
+        product: [...state.product, action.payload],
         errors: null,
       };
     case GET_PRODUCT_SUCCESS:
@@ -57,6 +59,14 @@ const achatReducer = (state = initState, action) => {
         errors: null,
         facture: action.payload,
       };
+
+    case GET_FACTURE_BY_ID_SUCCESS:
+      return {
+        ...state,
+        facture: action.payload,
+        errors: null,
+      };
+
     case ADD_FACTURE_SUCCESS:
       return {
         ...state,
@@ -77,6 +87,7 @@ const achatReducer = (state = initState, action) => {
           return el;
         }),
       };
+    case GET_FACTURE_BY_ID_FAILED:
     case UPDATE_FACTURE_FAILED:
     case GET_PRODUCT_FAILED:
     case ADD_PRODUCT_FAILED:
