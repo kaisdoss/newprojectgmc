@@ -12,7 +12,7 @@ let initialState = {
   token: localStorage.getItem("token"),
   user: null,
   isRegister: false,
-  isAuth: false,
+  isAuth: localStorage.getItem("isAuth")
 };
 
 export const AuthReducer = (state = initialState, action) => {
@@ -33,6 +33,8 @@ export const AuthReducer = (state = initialState, action) => {
     case LOAD_USER_FAIL:
     case REGISTER_FAIL:
       localStorage.removeItem("token");
+      localStorage.removeItem("isAuth");
+
       return {
         ...state,
         errors: action.payload,
@@ -40,6 +42,7 @@ export const AuthReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       if (action.payload.token) {
         localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("isAuth",true)
       }
       return {
         ...state,

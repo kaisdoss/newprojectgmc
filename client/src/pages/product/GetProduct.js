@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 
 function GetProduct({ history }) {
+
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.facturesAndProducts.product);
@@ -24,7 +25,7 @@ function GetProduct({ history }) {
           return (
             <div key={product._id}>
               <span>{product.name}</span>
-              {auth?.user?.role !== 'Stock Manager' && (
+              {auth?.user?.role !== 'Cashier' && (
               <button >
                 <Link to={`/products/updateProduct/${product._id}`} >Update</Link>
               </button> )}

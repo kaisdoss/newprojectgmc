@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { AuthReducer } from './authReducer';
 import achatReducer from './facturesAndProductsReducer'
 import usersReducer from './userReducer'
-import CounterReducer from './CounterReducer'
+// import CounterReducer from './CounterReducer'
 
 // import { persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
@@ -13,7 +13,7 @@ import CounterReducer from './CounterReducer'
 // 	whitelist: ['auth']
 // }
 
-const rootReducer = combineReducers({ auth: AuthReducer, facturesAndProducts: achatReducer, usersRed: usersReducer,counter:CounterReducer });
+const rootReducer = combineReducers({ auth: AuthReducer, facturesAndProducts: achatReducer, usersRed: usersReducer });
 
 // export default persistReducer(persistConfig, rootReducer)
 export default rootReducer

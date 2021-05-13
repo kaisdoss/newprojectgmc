@@ -21,25 +21,31 @@ function AddProduct({history}) {
   const toAddProduct = (e) => {
     e.preventDefault();
     dispatch(addProduct(product));
-    setProduct()
+    setProduct({
+      number: "",
+      name: "",
+      buyingPrice: "",
+      price: "",
+      description: "",
+    })
   };
   return (
     <div>
       <h2>Add Product</h2>
       <button onClick={() => history.goBack()} >Back</button>
 
-      <form onSubmit={toAddProduct}>
+      <form >
         <div>
           <label>number</label>
-          <input type="text" name="number" onChange={handleChange} />
+          <input type="text" name="number" value={product.number} onChange={handleChange} />
         </div>
         <div>
           <label>name</label>
-          <input type="text" name="name" onChange={handleChange} />
+          <input type="text" name="name"  onChange={handleChange} />
         </div>
         <div>
           <label>buyingPrice</label>
-          <input type="text" name="buyingPrice" onChange={handleChange} />
+          <input type="text" name="buyingPrice" value={product.buyingPrice}  onChange={handleChange} />
         </div>
         <div>
           <label>price</label>
@@ -50,7 +56,7 @@ function AddProduct({history}) {
           <label>description</label>
           <input type="text" name="description" onChange={handleChange} />
         </div>
-        <button type="submit">Add</button>
+        <button onClick={toAddProduct}>Add</button>
       </form>
     </div>
   );
