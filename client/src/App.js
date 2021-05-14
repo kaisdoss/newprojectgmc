@@ -61,9 +61,10 @@ function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+ 
   return (
     <Container maxWidth='lg'>
-      <Router>
+     
         <AppBar position='static'>
           <Toolbar>
             {!auth.isAuth ? (
@@ -169,8 +170,10 @@ function App() {
             )}
           </Toolbar>
         </AppBar>
+
+
         <Route exact path='/' component={Home} />
-        <Switch>
+       
           <Route exact path='/register' component={Register} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/users/allUsers' component={GetUsers} />
@@ -186,8 +189,8 @@ function App() {
           <Route
             exact
             path='/products/salePage'
-            render={({ match, history }) => (
-              <SalesPage match={match} history={history} />
+            render={(props) => (
+              <SalesPage {...props} />
             )}
             />
           <Route
@@ -200,8 +203,8 @@ function App() {
           <Route
             exact
             path='/facture/allFacture'
-            render={({ match, history }) => (
-              <GetFacture match={match} history={history} />
+            render={(props) => (
+              <GetFacture {...props} />
             )}
           />
           <Route
@@ -218,13 +221,13 @@ function App() {
             )}
           />
 
-          <Route
+          {/* <Route
             exact
             path='/products'
             render={({ match, history }) => (
               <GProduct match={match} history={history} />
             )}
-          />
+          /> */}
           <Route
             exact
             path='/products/addProduct'
@@ -237,7 +240,7 @@ function App() {
             path='/products/allProduct'
             component={GetProduct}
           />
-          
+          <Route exact path='/products' component={GProduct}></Route>
           <Route
             path='/products/updateProduct'
             render={({ match, history }) => (
@@ -246,8 +249,8 @@ function App() {
           />
 
           <PrivateRoute path='/dashboard' component={Dashboard} />
-        </Switch>
-      </Router>
+       
+  
     </Container>
   );
 }

@@ -6,22 +6,6 @@ const User = require('../models/user');
 const authMiddleware = require('../helpers/authMiddleware');
 
 
-// const jwt = require('jsonwebtoken');
-// //////////
-
-// const authHeader = req.headers['authorization']
-//   const token = authHeader && authHeader.split(' ')[1]
-
-//   if (token == null) return res.sendStatus(401)
-
-//   jwt.verify(token, process.env.TOKEN_SECRET as string, (err: any, user: any) => {
-//     console.log(err)
-
-//     if (err) return res.sendStatus(403)
-
-//     req.user = user
-
-
 // Route Create New facture
 // Path : http://localhost:3000/facture/addFacture
 router.post('/addFacture',authMiddleware, (req, res) => {
@@ -31,7 +15,7 @@ router.post('/addFacture',authMiddleware, (req, res) => {
     number,
     totalPrice,
     discount,
-    vat,
+    vat:10,
     idUsers,
   });
   factureModel
@@ -42,8 +26,8 @@ router.post('/addFacture',authMiddleware, (req, res) => {
 
 // Route Read All facture
 // Path : http://localhost:3000/facture/allFacture
-router.get('/allFacture',authMiddleware, (req, res) => {
-  Invoice.find()
+router.get('/allFacture', (req, res) => {
+  Invoice.find().populate('idUsers').populate('idProducts')
     .then((factures) => res.status(200).json(factures))
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
 });
@@ -78,7 +62,7 @@ router.get('/getFacture/:id',authMiddleware, (req, res) => {
 router.get('/getFactureV2/:id', async (req, res) => {
   try {
     const { id } = req.params.id;
-    var InvoiceList = await Invoice.findById(req.params.id).exec();
+    var InvoiceList = await (await Invoice.findById(req.params.id)).exec();
     const ProductList = await Product.find({
       _id: { $in: InvoiceList.idProducts },
     }).exec();

@@ -7,11 +7,13 @@ function GetFacture({history}) {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
     const facture = useSelector((state) => state.facturesAndProducts.facture);
+    console.log(auth)
     useEffect(() => {
       dispatch(getFacture());
     }, []);
     return (
         <div>
+          
       <button onClick={() => history.goBack()}>Back</button>
       {facture &&
         facture.map((facture) => {

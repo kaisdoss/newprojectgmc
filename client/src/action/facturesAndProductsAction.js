@@ -16,8 +16,11 @@ import {
   UPDATE_FACTURE_SUCCESS,
   DELETE_FACTURE_FAILED,
   DELETE_FACTURE_SUCCESS,
-  GET_FACTURE_BY_ID_SUCCESS,
-  GET_FACTURE_BY_ID_FAILED,
+  // GET_FACTURE_BY_ID_FAILED,
+  // GET_FACTURE_BY_ID_SUCCESS,
+  INCREMENT,
+  DECREMENT,
+  RESET,
 } from './types';
 
 //Actions of Facture
@@ -56,22 +59,22 @@ export const getFacture = () => (dispatch) => {
     );
 };
 ////////////
-export const getFactureById = (id) => (dispatch) => {
-  axios
-    .get(`${process.env.API_URL}/facture/getFactureV2/${id}`)
-    .then((res) =>
-      dispatch({
-        type: GET_FACTURE_BY_ID_SUCCESS,
-        payload: res.data,
-      })
-    )
-    .catch((err) =>
-      dispatch({
-        type: GET_FACTURE_BY_ID_FAILED,
-        payload: err.response.data.errors,
-      })
-    );
-};
+// export const getFactureById = (id) => (dispatch) => {
+//   axios
+//     .get(`${process.env.API_URL}/facture/getFactureV2/${id}`)
+//     .then((res) =>
+//       dispatch({
+//         type: GET_FACTURE_BY_ID_SUCCESS,
+//         payload: res.data,
+//       })
+//     )
+//     .catch((err) =>
+//       dispatch({
+//         type: GET_FACTURE_BY_ID_FAILED,
+//         payload: err.response.data.errors,
+//       })
+//     );
+// };
 //3-Update Facture Action
 export const updateFacture = (facture) => (dispatch) => {
   axios
@@ -178,3 +181,19 @@ export const deleteProduct = (id) => (dispatch) => {
       })
     );
 };
+
+export const incrementCount = (id) => {
+  //  console.log("id: !!",id);
+  return {
+    type: INCREMENT,
+    payload: id,
+  };
+};
+export const decrementCount = (id) => ({
+  type: DECREMENT,
+  payload: id,
+});
+export const resetCount = (id) => ({
+  type: RESET,
+  payload: id,
+});

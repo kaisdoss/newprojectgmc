@@ -5,8 +5,8 @@ import {
   ADD_PRODUCT_SUCCESS,
   GET_FACTURE_FAILED,
   GET_FACTURE_SUCCESS,
-  GET_FACTURE_BY_ID_FAILED,
-  GET_FACTURE_BY_ID_SUCCESS,
+  // GET_FACTURE_BY_ID_FAILED,
+  // GET_FACTURE_BY_ID_SUCCESS,
   GET_PRODUCT_FAILED,
   GET_PRODUCT_SUCCESS,
   UPDATE_FACTURE_FAILED,
@@ -17,16 +17,36 @@ import {
   DELETE_FACTURE_SUCCESS,
   DELETE_PRODUCT_FAILED,
   DELETE_PRODUCT_SUCCESS,
+  INCREMENT,
+  DECREMENT,
+  RESET,
 } from '../action/types';
 
 const initState = {
   facture: [],
   errors: null,
   product: [],
+  count: 0,
 };
 
 const achatReducer = (state = initState, action) => {
   switch (action.type) {
+    // state.product.map((el) => {
+    //   if (el._id === action.payload._id) return action.payload;
+    //   return el;
+
+    // case INCREMENT:
+    //   return {
+    //     ...state,
+    //     count: state.product.map((el) => {
+    //       if (el._id === action.payload._id) return state.count + 1;
+    //     }),
+    //   };
+    // case DECREMENT:
+    //   return { ...state, count: state.count - 1 };
+    // case RESET:
+    //   return { ...state, count: 0 };
+
     case ADD_PRODUCT_SUCCESS:
       return {
         ...state,
@@ -60,12 +80,12 @@ const achatReducer = (state = initState, action) => {
         facture: action.payload,
       };
 
-    case GET_FACTURE_BY_ID_SUCCESS:
-      return {
-        ...state,
-        facture: action.payload,
-        errors: null,
-      };
+    // case GET_FACTURE_BY_ID_SUCCESS:
+    //   return {
+    //     ...state,
+    //     facture: action.payload,
+    //     errors: null,
+    //   };
 
     case ADD_FACTURE_SUCCESS:
       return {
@@ -87,7 +107,7 @@ const achatReducer = (state = initState, action) => {
           return el;
         }),
       };
-    case GET_FACTURE_BY_ID_FAILED:
+    // case GET_FACTURE_BY_ID_FAILED:
     case UPDATE_FACTURE_FAILED:
     case GET_PRODUCT_FAILED:
     case ADD_PRODUCT_FAILED:
@@ -100,7 +120,6 @@ const achatReducer = (state = initState, action) => {
         ...state,
         errors: action.payload,
       };
-
     default:
       return state;
   }
