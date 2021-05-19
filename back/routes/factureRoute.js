@@ -5,17 +5,16 @@ const Product = require('../models/product');
 const User = require('../models/user');
 const authMiddleware = require('../helpers/authMiddleware');
 
-
 // Route Create New facture
 // Path : http://localhost:3000/facture/addFacture
-router.post('/addFacture',authMiddleware, (req, res) => {
+router.post('/addFacture', authMiddleware, (req, res) => {
   const { idProducts, number, totalPrice, discount, vat, idUsers } = req.body;
   const factureModel = new Invoice({
     idProducts,
     number,
     totalPrice,
     discount,
-    vat:10,
+    vat: 10,
     idUsers,
   });
   factureModel
@@ -27,14 +26,30 @@ router.post('/addFacture',authMiddleware, (req, res) => {
 // Route Read All facture
 // Path : http://localhost:3000/facture/allFacture
 router.get('/allFacture', (req, res) => {
-  Invoice.find().populate('idUsers').populate('idProducts')
+  Invoice.find()
+    .populate('idUsers')
+    .populate('idProducts')
     .then((factures) => res.status(200).json(factures))
+    .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
+});
+
+//////
+router.post('/postInvoice', (req, res) => {
+  console.log(req.body);
+  const IvoiceModel = new Invoice(req.body);
+  IvoiceModel.populate('idUsers')
+    .populate('idProducts')
+    .save()
+    .then((factures) => {
+      console.log('1111111:', factures);
+      res.status(200).json(factures);
+    })
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
 });
 
 //////////////////////////
 
-router.get('/getFacture/:id',authMiddleware, (req, res) => {
+router.get('/getFacture/:id', authMiddleware, (req, res) => {
   console.log(req);
   const { id } = req.params.id;
   Db.Invoice.findById(id)
@@ -55,9 +70,6 @@ router.get('/getFacture/:id',authMiddleware, (req, res) => {
     })
     .catch((err) => res.status(400).json({ errors: [{ msg: err }] }));
 });
-
-
-
 
 router.get('/getFactureV2/:id', async (req, res) => {
   try {

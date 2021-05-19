@@ -1,14 +1,14 @@
-import "./cssFile/Register.css";
-import { hot } from "react-hot-loader/root";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../action/authActions";
-import { makeStyles } from "@material-ui/core/styles";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
+import './cssFile/Register.css';
+import { hot } from 'react-hot-loader/root';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../action/authActions';
+import { makeStyles } from '@material-ui/core/styles';
+// import Input from "@material-ui/core/Input";
+// import InputLabel from "@material-ui/core/InputLabel";
+// import FormControl from "@material-ui/core/FormControl";
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
 function Register({ history }) {
   const classes = useStyles();
   const [info, setInfo] = useState({
-    firstname: "",
-    lastname: "",
-    phone: "",
-    email: "",
-    password: "",
-    role: "",
+    firstname: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    password: '',
+    role: '',
   });
   const dispatch = useDispatch();
 
@@ -82,7 +82,12 @@ function Register({ history }) {
           </Grid>
           <Grid item>
             <Paper className={classes.paper} placeholder="Enter Your Password">
-              <input placeholder="Enter Your Password" type="password" name="password" onChange={handleChange} />
+              <input
+                placeholder="Enter Your Password"
+                type="password"
+                name="password"
+                onChange={handleChange}
+              />
             </Paper>
           </Grid>
         </Grid>

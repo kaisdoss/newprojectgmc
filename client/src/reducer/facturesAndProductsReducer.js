@@ -17,6 +17,8 @@ import {
   DELETE_FACTURE_SUCCESS,
   DELETE_PRODUCT_FAILED,
   DELETE_PRODUCT_SUCCESS,
+  POST_INVOICE_SUCCESS,
+  POST_INVOICE_FAILED,
   INCREMENT,
   DECREMENT,
   RESET,
@@ -30,22 +32,13 @@ const initState = {
 };
 
 const achatReducer = (state = initState, action) => {
+  console.log("res.data:",action.payload)
   switch (action.type) {
-    // state.product.map((el) => {
-    //   if (el._id === action.payload._id) return action.payload;
-    //   return el;
-
-    // case INCREMENT:
-    //   return {
-    //     ...state,
-    //     count: state.product.map((el) => {
-    //       if (el._id === action.payload._id) return state.count + 1;
-    //     }),
-    //   };
-    // case DECREMENT:
-    //   return { ...state, count: state.count - 1 };
-    // case RESET:
-    //   return { ...state, count: 0 };
+    case POST_INVOICE_SUCCESS:
+      return {
+        ...state,
+       facture:[...state.facture, action.payload]
+      };
 
     case ADD_PRODUCT_SUCCESS:
       return {

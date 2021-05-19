@@ -16,6 +16,8 @@ import {
   UPDATE_FACTURE_SUCCESS,
   DELETE_FACTURE_FAILED,
   DELETE_FACTURE_SUCCESS,
+  POST_INVOICE_SUCCESS,
+  POST_INVOICE_FAILED,
   // GET_FACTURE_BY_ID_FAILED,
   // GET_FACTURE_BY_ID_SUCCESS,
   INCREMENT,
@@ -58,6 +60,26 @@ export const getFacture = () => (dispatch) => {
       })
     );
 };
+
+// Post Facture
+export const postInvoice = (salesList) => (dispatch) => {
+  console.log(salesList)
+  axios
+    .post(`${process.env.API_URL}/facture/postInvoice`,salesList)
+    .then((res) =>
+      dispatch({
+        type: POST_INVOICE_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: POST_INVOICE_FAILED,
+        payload: err.response.data.errors,
+      })
+    );
+};
+
 ////////////
 // export const getFactureById = (id) => (dispatch) => {
 //   axios
